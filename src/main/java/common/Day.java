@@ -33,10 +33,10 @@ public abstract class Day {
                 }
             }
 
-            System.out.println("Solution of part A");
+            System.out.println("Solution of part A:");
             System.out.println(part1(lines));
 
-            System.out.println("\nSolution of part B");
+            System.out.println("\nSolution of part B:");
             System.out.println(part2(lines));
         } else {
             File testInput = new File(String.format("src/test/test-inputs/%s/day%s.txt", year, day));
@@ -95,9 +95,19 @@ public abstract class Day {
             writer.flush();
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("C");
+            System.out.println("Could not get puzzle input, try to get it manually.");
+            throw e;
         }
+    }
+
+    public static int[] createIntArray(List<String> input) {
+        int[] result = new int[input.size()];
+
+        for (int i = 0; i < input.size(); i++) {
+            result[i] = Integer.parseInt(input.get(i));
+        }
+
+        return result;
     }
 
     public abstract String part1(List<String> input);
