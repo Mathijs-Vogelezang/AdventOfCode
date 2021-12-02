@@ -3,6 +3,7 @@ package year2021.solutions;
 import common.Day;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class Day1 extends Day {
@@ -17,16 +18,10 @@ public class Day1 extends Day {
         int increased = 0;
         int[] values = Day.createIntArray(input);
 
-        int previous = values[0];
-
         for (int i = 1; i < input.size(); i++) {
-            int current = values[i];
-
-            if (current > previous) {
+            if (values[i] > values[i - 1]) {
                 increased++;
             }
-
-            previous = current;
         }
         return Integer.toString(increased);
     }
