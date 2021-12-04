@@ -5,6 +5,7 @@ import common.Day;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Day3 extends Day {
     private static final boolean isTest = false;
@@ -31,7 +32,6 @@ public class Day3 extends Day {
                 gamma += '1';
                 epsilon += '0';
             }
-
         }
 
         int gammaRate = Integer.parseInt(gamma, 2);
@@ -45,62 +45,9 @@ public class Day3 extends Day {
         List<String> copy = new ArrayList<>(input);
 
         int size = copy.get(0).length();
-        String oxygen = "";
-        String co2 = "";
-
-        for (int i = 0; i < size; i++) {
-            int zeros = getZeros(copy, i);
-            int ones = copy.size() - zeros;
-
-
-            for (int j = 0; j < copy.size(); j++) {
-                if (ones >= zeros) {
-                    if (copy.get(j).charAt(i) == '0') {
-                        copy.remove(j);
-                        j--;
-                    }
-                } else {
-                    if (copy.get(j).charAt(i) == '1') {
-                        copy.remove(j);
-                        j--;
-                    }
-                }
-
-                if (copy.size() == 1) {
-                    oxygen = copy.get(0);
-                    i = size;
-                    break;
-                }
-            }
-        }
-
+        String oxygen = calculateValue(copy, true);
         copy = new ArrayList<>(input);
-
-        for (int i = 0; i < size; i++) {
-            int zeros = getZeros(copy, i);
-            int ones = copy.size() - zeros;
-
-            for (int j = 0; j < copy.size(); j++) {
-                if (zeros > ones) {
-                    if (copy.get(j).charAt(i) == '0') {
-                        copy.remove(j);
-                        j--;
-                    }
-                } else {
-                    if (copy.get(j).charAt(i) == '1') {
-                        copy.remove(j);
-                        j--;
-                    }
-                }
-
-                if (copy.size() == 1) {
-                    co2 = copy.get(0);
-                    i = size;
-                    break;
-                }
-
-            }
-        }
+        String co2 = calculateValue(copy, false);
 
         int oxygenRating = Integer.parseInt(oxygen, 2);
         int co2Rating = Integer.parseInt(co2, 2);
@@ -109,15 +56,38 @@ public class Day3 extends Day {
     }
 
     public static int getZeros(List<String> input, int position) {
-        int zeros = 0;
+        return (int) input.stream().filter(item -> item.charAt(position) == '0').count();
+    }
 
-        for (String line : input) {
-            if (line.charAt(position) == '0') {
-                zeros++;
+    public static String calculateValue(List<String> input, boolean mostCommon) {
+        int size = input.get(0).length();
+
+        for (int i = 0; i < size; i++) {
+            int zeros = getZeros(input, i);
+            int ones = input.size() - zeros;
+
+            if (mostCommon) {
+                input = filter(input, zeros, ones, i, '1');
+            } else {
+                input = filter(input, ones, zeros, i, '0');
+            }
+
+            if (input.size() == 1) {
+                return input.get(0);
             }
         }
 
-        return zeros;
+        return null;
+    }
+
+    public static List<String> filter(List<String> input, int numbers1, int numbers2, int index, char ifEqual) {
+        if (numbers1 > numbers2) {
+            return input.stream().filter(item -> item.charAt(index) == '0').collect(Collectors.toList());
+        } else if (numbers1 == numbers2) {
+            return input.stream().filter(item -> item.charAt(index) == ifEqual).collect(Collectors.toList());
+        } else {
+            return input.stream().filter(item -> item.charAt(index) == '1').collect(Collectors.toList());
+        }
     }
 
     public static void main(String[] args) throws IOException {
