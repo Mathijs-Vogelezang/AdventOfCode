@@ -14,6 +14,73 @@ public class Day4 extends Day {
         super(isTest);
     }
 
+    public static int[] getNumbers(String numbers, String splitter) {
+        String[] numberArray = numbers.split(splitter);
+
+        if (numberArray[0].equals("")) {
+            System.arraycopy(numberArray, 1, numberArray, 0, 5);
+        }
+
+        return Arrays.stream(numberArray).mapToInt(Integer::parseInt).toArray();
+    }
+
+    public static List<int[][]> createBingoCards(List<String> input) {
+        List<int[][]> result = new ArrayList<>();
+
+        for (int i = 0; i < input.size(); i += 6) {
+            int[][] bingoCard = new int[5][5];
+
+            for (int j = 0; j < 5; j++) {
+                bingoCard[j] = getNumbers(input.get(i + j), " +");
+            }
+
+            result.add(bingoCard);
+        }
+
+        return result;
+    }
+
+    public static int calculateResult(int[][] bingoCard, List<Integer> numbers) {
+        int sum = 0;
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (!numbers.contains(bingoCard[i][j])) {
+                    sum += bingoCard[i][j];
+                }
+            }
+        }
+
+        return sum * numbers.get(numbers.size() - 1);
+    }
+
+    public static boolean hasBingo(int[][] bingoCard, List<Integer> drawnNumbers) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (!drawnNumbers.contains(bingoCard[i][j])) {
+                    break;
+                } else if (j == 4) {
+                    return true;
+                }
+            }
+
+            for (int j = 0; j < 5; j++) {
+                if (!drawnNumbers.contains(bingoCard[j][i])) {
+                    break;
+                } else if (j == 4) {
+                    return true;
+                }
+            }
+
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) throws IOException {
+        new Day4();
+    }
+
     @Override
     public String part1(List<String> input) {
         int[] numbers = getNumbers(input.get(0), ",");
@@ -56,73 +123,5 @@ public class Day4 extends Day {
         }
 
         return Integer.toString(calculateResult(lastWon, drawnNumbers.subList(0, lastRound + 1)));
-    }
-
-    public static int[] getNumbers(String numbers, String splitter) {
-        String[] numberArray = numbers.split(splitter);
-
-        if (numberArray[0].equals("")) {
-            System.arraycopy(numberArray, 1, numberArray, 0, 5);
-        }
-
-        return Arrays.stream(numberArray).mapToInt(Integer::parseInt).toArray();
-    }
-
-    public static List<int[][]> createBingoCards(List<String> input) {
-        List<int[][]> result = new ArrayList<>();
-
-        for (int i = 0; i < input.size(); i += 6) {
-            int[][] bingoCard = new int[5][5];
-
-            for (int j = 0; j < 5; j++) {
-                bingoCard[j] = getNumbers(input.get(i + j), " +");
-            }
-
-            result.add(bingoCard);
-        }
-
-        return result;
-    }
-
-    public static int calculateResult(int[][] bingoCard, List<Integer> numbers) {
-        int sum = 0;
-
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                if (!numbers.contains(bingoCard[i][j])) {
-                    sum += bingoCard[i][j];
-                }
-            }
-        }
-
-        return sum * numbers.get(numbers.size() - 1);
-    }
-
-    public static boolean hasBingo(int[][] bingoCard, List<Integer> drawnNumbers) {
-
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                if (!drawnNumbers.contains(bingoCard[i][j])) {
-                    break;
-                } else if (j == 4) {
-                    return true;
-                }
-            }
-
-            for (int j = 0; j < 5; j++) {
-                if (!drawnNumbers.contains(bingoCard[j][i])) {
-                    break;
-                } else if (j == 4) {
-                    return true;
-                }
-            }
-
-        }
-
-        return false;
-    }
-
-    public static void main(String[] args) throws IOException {
-        new Day4();
     }
 }
