@@ -32,9 +32,7 @@ public class Day6 extends Day {
         for (int i = 0; i < days; i++) {
             long zeroDays = daysAndFishes[0];
 
-            for (int j = 1; j < daysAndFishes.length; j++) {
-                daysAndFishes[j - 1] = daysAndFishes[j];
-            }
+            System.arraycopy(daysAndFishes, 1, daysAndFishes, 0, daysAndFishes.length - 1);
 
             daysAndFishes[8] = zeroDays;
             daysAndFishes[6] += zeroDays;
