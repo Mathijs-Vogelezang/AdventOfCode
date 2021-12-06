@@ -14,23 +14,19 @@ public class Day6 extends Day {
 
     @Override
     public String part1(List<String> input) {
-        List<Integer> days = createIntegerList(input.get(0));
-
-        return Long.toString(calculateFish(80, days));
+        return Long.toString(calculateFish(80, input.get(0)));
     }
 
     @Override
     public String part2(List<String> input) {
-        List<Integer> days = createIntegerList(input.get(0));
-
-        return Long.toString(calculateFish(256, days));
+        return Long.toString(calculateFish(256, input.get(0)));
     }
 
-    private long calculateFish(int days, List<Integer> input) {
+    private long calculateFish(int days, String input) {
         long[] daysAndFishes = new long[9];
 
-        for (Integer amountOfDays : input) {
-            daysAndFishes[amountOfDays]++;
+        for (String amountOfDays : input.split(",")) {
+            daysAndFishes[Integer.parseInt(amountOfDays)]++;
         }
 
         for (int i = 0; i < days; i++) {
@@ -45,17 +41,6 @@ public class Day6 extends Day {
         }
 
         return Arrays.stream(daysAndFishes).sum();
-    }
-
-    public static List<Integer> createIntegerList(String input) {
-        String[] numbers = input.split(",");
-        List<Integer> result = new ArrayList<>();
-
-        for (String number: numbers) {
-            result.add(Integer.parseInt(number));
-        }
-
-        return result;
     }
 
     public static void main(String[] args) throws IOException {
