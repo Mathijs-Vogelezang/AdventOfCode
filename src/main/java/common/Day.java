@@ -33,11 +33,26 @@ public abstract class Day {
                 }
             }
 
+            long[] startTimes = new long[2];
+            long[] endTimes = new long[2];
+
+            String[] outputs = new String[2];
+
+            startTimes[0] = System.currentTimeMillis();
+            outputs[0] = part1(lines);
+            endTimes[0] = System.currentTimeMillis();
+
+            startTimes[1] = System.currentTimeMillis();
+            outputs[1] = part2(lines);
+            endTimes[1] = System.currentTimeMillis();
+
             System.out.println("Solution of part A:");
-            System.out.println(part1(lines));
+            System.out.println(outputs[0]);
+            System.out.printf("\tPart A took %f s to execute%n", (endTimes[0] - startTimes[0])/1000.0);
 
             System.out.println("\nSolution of part B:");
-            System.out.println(part2(lines));
+            System.out.println(outputs[1]);
+            System.out.printf("\tPart B took %f s to execute%n", (endTimes[1] - startTimes[1])/1000.0);
         } else {
             File testInput = new File(String.format("src/test/test-inputs/%s/day%s.txt", year, day));
             Scanner scanner = new Scanner(testInput);
@@ -46,6 +61,7 @@ public abstract class Day {
             // the rest of the lines are puzzle input
 
             String[] solutions = new String[2];
+
             solutions[0] = scanner.nextLine();
             solutions[1] = scanner.nextLine();
 
@@ -53,9 +69,18 @@ public abstract class Day {
                 lines.add(scanner.nextLine());
             }
 
+            long[] startTimes = new long[2];
+            long[] endTimes = new long[2];
+
             String[] outputs = new String[2];
+
+            startTimes[0] = System.currentTimeMillis();
             outputs[0] = part1(lines);
+            endTimes[0] = System.currentTimeMillis();
+
+            startTimes[1] = System.currentTimeMillis();
             outputs[1] = part2(lines);
+            endTimes[1] = System.currentTimeMillis();
 
             System.out.println("\nTest report:");
             for (int i = 0; i < 2; i++) {
@@ -64,10 +89,12 @@ public abstract class Day {
                 } else if (outputs[i].equals(solutions[i])) {
                     System.out.printf("\tThe answer of part %d is %s, this is the correct answer!\n", i + 1, outputs[i]);
                     System.out.println("\t\tYour solution should now work! (hopefully)");
+                    System.out.printf("\t\tYour solutions took %f s to execute%n", (endTimes[i] - startTimes[i])/1000.0);
                 } else {
                     System.out.printf("\tYour solution of part %d does not work!\n", i + 1);
                     System.out.println("\t\tExpected answer: " + solutions[i]);
                     System.out.println("\t\tYour answer: " + outputs[i]);
+                    System.out.printf("\t\tYour solutions took %f s to execute%n", (endTimes[i] - startTimes[i])/1000.0);
                 }
 
                 System.out.println();
