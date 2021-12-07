@@ -8,18 +8,25 @@ import java.util.List;
 
 public class Day7 extends Day {
     private static final boolean isTest = false;
+    private int[] positions;
+    int min;
+    int max;
+    int[] fuels;
 
     public Day7() throws IOException {
         super(isTest);
     }
 
     @Override
-    public String part1(List<String> input) {
-        int[] positions = Arrays.stream(input.get(0).split(",")).mapToInt(Integer::parseInt).toArray();
-        int min = Arrays.stream(positions).min().getAsInt();
-        int max = Arrays.stream(positions).max().getAsInt();
-        int[] fuels = new int[max - min];
+    public void setup() {
+        positions = Arrays.stream(input.get(0).split(",")).mapToInt(Integer::parseInt).toArray();
+        min = Arrays.stream(positions).min().getAsInt();
+        max = Arrays.stream(positions).max().getAsInt();
+        fuels = new int[max - min];
+    }
 
+    @Override
+    public String part1() {
         for (int i = min; i < max; i++) {
             int sum = 0;
 
@@ -34,24 +41,16 @@ public class Day7 extends Day {
     }
 
     @Override
-    public String part2(List<String> input) {
-        int[] positions = Arrays.stream(input.get(0).split(",")).mapToInt(Integer::parseInt).toArray();
-        int min = Arrays.stream(positions).min().getAsInt();
-        int max = Arrays.stream(positions).max().getAsInt();
-        int[] fuels = new int[max - min];
-
+    public String part2() {
         for (int i = min; i < max; i++) {
             int sum = 0;
 
-            for (int j = 0; j < positions.length; j++) {
-                int difference = Math.abs(positions[j] - i);
-                int fuel = 0;
+            for (int position : positions) {
+                int difference = Math.abs(position - i);
 
                 for (int k = 0; k <= difference; k++) {
-                    fuel += k;
+                    sum += k;
                 }
-
-                sum += fuel;
             }
 
             fuels[i] = sum;

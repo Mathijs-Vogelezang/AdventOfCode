@@ -3,7 +3,6 @@ package year2021.solutions;
 import common.Day;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public class Day1 extends Day {
@@ -14,7 +13,7 @@ public class Day1 extends Day {
     }
 
     @Override
-    public String part1(List<String> input) {
+    public String part1() {
         int increased = 0;
         int[] values = Day.createIntArray(input);
 
@@ -27,7 +26,7 @@ public class Day1 extends Day {
     }
 
     @Override
-    public String part2(List<String> input) {
+    public String part2() {
         int increased = 0;
 
         int[] values = Day.createIntArray(input);

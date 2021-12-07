@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public abstract class Day {
-    private final List<String> lines = new ArrayList<>();
+    protected final List<String> input = new ArrayList<>();
 
     public Day(boolean isTest) throws IOException {
         String[] date = getClass().getName().split("[.]");
@@ -29,21 +29,21 @@ public abstract class Day {
                 Scanner scanner = new Scanner(input);
 
                 while (scanner.hasNextLine()) {
-                    lines.add(scanner.nextLine());
+                    this.input.add(scanner.nextLine());
                 }
             }
 
             long[] startTimes = new long[2];
             long[] endTimes = new long[2];
-
             String[] outputs = new String[2];
+            setup();
 
             startTimes[0] = System.currentTimeMillis();
-            outputs[0] = part1(lines);
+            outputs[0] = part1();
             endTimes[0] = System.currentTimeMillis();
 
             startTimes[1] = System.currentTimeMillis();
-            outputs[1] = part2(lines);
+            outputs[1] = part2();
             endTimes[1] = System.currentTimeMillis();
 
             System.out.println("Solution of part A:");
@@ -61,25 +61,24 @@ public abstract class Day {
             // the rest of the lines are puzzle input
 
             String[] solutions = new String[2];
-
             solutions[0] = scanner.nextLine();
             solutions[1] = scanner.nextLine();
 
             while (scanner.hasNextLine()) {
-                lines.add(scanner.nextLine());
+                input.add(scanner.nextLine());
             }
 
             long[] startTimes = new long[2];
             long[] endTimes = new long[2];
-
             String[] outputs = new String[2];
+            setup();
 
             startTimes[0] = System.currentTimeMillis();
-            outputs[0] = part1(lines);
+            outputs[0] = part1();
             endTimes[0] = System.currentTimeMillis();
 
             startTimes[1] = System.currentTimeMillis();
-            outputs[1] = part2(lines);
+            outputs[1] = part2();
             endTimes[1] = System.currentTimeMillis();
 
             System.out.println("\nTest report:");
@@ -114,7 +113,7 @@ public abstract class Day {
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                lines.add(line);
+                input.add(line);
                 writer.write(line);
                 writer.newLine();
             }
@@ -137,6 +136,14 @@ public abstract class Day {
         return result;
     }
 
-    public abstract String part1(List<String> input);
-    public abstract String part2(List<String> input);
+    public abstract String part1();
+    public abstract String part2();
+
+    /**
+     * <code>setup()</code> is called before both parts are executed.
+     * This method can be overwritten to setup some things.
+     */
+    public void setup() {
+
+    }
 }

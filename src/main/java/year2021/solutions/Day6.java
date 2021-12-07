@@ -13,12 +13,12 @@ public class Day6 extends Day {
     }
 
     @Override
-    public String part1(List<String> input) {
+    public String part1() {
         return Long.toString(calculateFish(80, input.get(0)));
     }
 
     @Override
-    public String part2(List<String> input) {
+    public String part2() {
         return Long.toString(calculateFish(256, input.get(0)));
     }
 

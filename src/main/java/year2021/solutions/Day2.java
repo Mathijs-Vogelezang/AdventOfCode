@@ -13,7 +13,7 @@ public class Day2 extends Day {
     }
 
     @Override
-    public String part1(List<String> input) {
+    public String part1() {
         int depth = 0;
         int horizontal = 0;
 
@@ -33,7 +33,7 @@ public class Day2 extends Day {
     }
 
     @Override
-    public String part2(List<String> input) {
+    public String part2() {
         int depth = 0;
         int horizontal = 0;
         int aim = 0;

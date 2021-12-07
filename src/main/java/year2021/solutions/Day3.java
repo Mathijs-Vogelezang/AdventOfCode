@@ -15,7 +15,7 @@ public class Day3 extends Day {
     }
 
     @Override
-    public String part1(List<String> input) {
+    public String part1() {
         String gamma = "";
         String epsilon = "";
 
@@ -41,7 +41,7 @@ public class Day3 extends Day {
     }
 
     @Override
-    public String part2(List<String> input) {
+    public String part2() {
         List<String> copy = new ArrayList<>(input);
 
         int size = copy.get(0).length();

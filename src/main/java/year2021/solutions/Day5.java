@@ -16,7 +16,7 @@ public class Day5 extends Day {
     }
 
     @Override
-    public String part1(List<String> input) {
+    public String part1() {
         ArrayList<LineSegment> segments = (ArrayList<LineSegment>) createLineSegments(input);
         int[][] grid = new int[maxY][maxX];
 
@@ -28,7 +28,7 @@ public class Day5 extends Day {
     }
 
     @Override
-    public String part2(List<String> input) {
+    public String part2() {
         ArrayList<LineSegment> segments = (ArrayList<LineSegment>) createLineSegments(input);
         int[][] grid = new int[maxY][maxX];
 

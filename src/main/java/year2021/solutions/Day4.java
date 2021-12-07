@@ -82,7 +82,7 @@ public class Day4 extends Day {
     }
 
     @Override
-    public String part1(List<String> input) {
+    public String part1() {
         int[] numbers = getNumbers(input.get(0), ",");
         List<int[][]> bingoCards = createBingoCards(input.subList(2, input.size()));
 
@@ -101,7 +101,7 @@ public class Day4 extends Day {
     }
 
     @Override
-    public String part2(List<String> input) {
+    public String part2() {
         int[] numbers = getNumbers(input.get(0), ",");
         List<int[][]> bingoCards = createBingoCards(input.subList(2, input.size()));
 
