@@ -47,10 +47,7 @@ public class Day7 extends Day {
 
             for (int position : positions) {
                 int difference = Math.abs(position - i);
-
-                for (int k = 0; k <= difference; k++) {
-                    sum += k;
-                }
+                sum += (difference*(difference + 1))/2;
             }
 
             fuels[i] = sum;
