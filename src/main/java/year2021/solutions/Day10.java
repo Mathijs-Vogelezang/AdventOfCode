@@ -6,10 +6,9 @@ import java.io.IOException;
 import java.util.*;
 
 public class Day10 extends Day {
-    private static final boolean isTest = false;
-    private List<String> openCharacters;
-    private List<String> closingCharacters;
-    private Map<String, Integer> closingScores;
+    private static final boolean isTest = true;
+    private List<Character> openCharacters;
+    private List<Character> closingCharacters;
 
     public Day10() throws IOException {
         super(isTest);
@@ -17,30 +16,31 @@ public class Day10 extends Day {
 
     @Override
     public void setup() {
-        openCharacters = Arrays.asList("(", "[", "{", "<");
-        closingCharacters = Arrays.asList(")", "]", "}", ">");
-
-        closingScores = new HashMap<>();
-        closingScores.put(")", 3);
-        closingScores.put("]", 57);
-        closingScores.put("}", 1197);
-        closingScores.put(">", 25137);
+        openCharacters = Arrays.asList('(', '[', '{', '<');
+        closingCharacters = Arrays.asList(')', ']', '}', '>');
     }
 
     @Override
     public String part1() {
+        Map<Character, Integer> closingScores;
+        closingScores = new HashMap<>();
+        closingScores.put(')', 3);
+        closingScores.put(']', 57);
+        closingScores.put('}', 1197);
+        closingScores.put('>', 25137);
+
         int score = 0;
 
         for (String line : input) {
-            List<String> expected = new ArrayList<>();
+            List<Character> expected = new ArrayList<>();
 
-            for (String character : line.split("")) {
+            for (char character : line.toCharArray()) {
                 int index = openCharacters.indexOf(character);
 
                 if (index >= 0) {
                     expected.add(closingCharacters.get(index));
                 } else {
-                    if (!character.equals(expected.remove(expected.size() - 1))) {
+                    if (character != expected.remove(expected.size() - 1)) {
                         score += closingScores.get(character);
                         break;
                     }
@@ -52,26 +52,26 @@ public class Day10 extends Day {
 
     @Override
     public String part2() {
-        Map<String, Integer> scores = new HashMap<>();
+        Map<Character, Integer> scores = new HashMap<>();
 
-        scores.put(")", 1);
-        scores.put("]", 2);
-        scores.put("}", 3);
-        scores.put(">", 4);
+        scores.put(')', 1);
+        scores.put(']', 2);
+        scores.put('}', 3);
+        scores.put('>', 4);
 
         List<Long> closingScores = new ArrayList<>();
 
         for (String line : input) {
-            List<String> expected = new ArrayList<>();
+            List<Character> expected = new ArrayList<>();
             boolean isIncomplete = true;
 
-            for (String character : line.split("")) {
+            for (char character : line.toCharArray()) {
                 int index = openCharacters.indexOf(character);
 
                 if (index >= 0) {
                     expected.add(closingCharacters.get(index));
                 } else {
-                    if (!character.equals(expected.remove(expected.size() - 1))) {
+                    if (character != expected.remove(expected.size() - 1)) {
                         isIncomplete = false;
                         break;
                     }
@@ -82,7 +82,7 @@ public class Day10 extends Day {
                 long score = 0;
                 Collections.reverse(expected);
 
-                for (String character : expected) {
+                for (char character : expected) {
                     score *= 5;
                     score += scores.get(character);
                 }
