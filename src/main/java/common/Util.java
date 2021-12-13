@@ -45,4 +45,37 @@ public class Util {
 
         return builder.toString();
     }
+
+    public static int countBooleans (boolean[][] input, boolean toCheck) {
+        int result = 0;
+
+        for (boolean[] row : input) {
+            for (boolean value : row) {
+                if (value == toCheck) result++;
+            }
+        }
+
+        return result;
+    }
+
+    public static String gridToString(boolean[][] grid, String forTrue, String forFalse) {
+        StringBuilder builder = new StringBuilder();
+
+        for (boolean[] row : grid) {
+            for (boolean value : row) {
+                if (value) {
+                    builder.append(forTrue);
+                } else {
+                    builder.append(forFalse);
+                }
+            }
+            builder.append("\n");
+        }
+
+        return builder.toString();
+    }
+
+    public static String gridToString (boolean[][] grid) {
+        return gridToString(grid, "#", ".");
+    }
 }
