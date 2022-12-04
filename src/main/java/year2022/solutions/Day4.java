@@ -3,7 +3,6 @@ package year2022.solutions;
 import common.Day;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class Day4 extends Day {
     private static final boolean isTest = false;
