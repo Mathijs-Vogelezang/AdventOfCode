@@ -78,4 +78,15 @@ public class Util {
     public static String gridToString (boolean[][] grid) {
         return gridToString(grid, "#", ".");
     }
+
+    public static boolean uniqueCharacters(String line) {
+        for (int i = 0; i < line.length(); i++) {
+            for (int j = i + 1; j < line.length(); j++) {
+                if (line.charAt(i) == line.charAt(j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
