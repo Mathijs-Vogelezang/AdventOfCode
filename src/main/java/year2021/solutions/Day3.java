@@ -8,10 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Day3 extends Day {
-    private static final boolean isTest = false;
-
     public Day3() throws IOException {
-        super(isTest);
+        super();
     }
 
     @Override

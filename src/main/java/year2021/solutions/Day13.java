@@ -7,12 +7,11 @@ import java.io.IOException;
 import java.util.*;
 
 public class Day13 extends Day {
-    private static final boolean isTest = false;
     private boolean[][] grid;
     private List<Instruction> instructions;
 
     public Day13() throws IOException {
-        super(isTest);
+        super();
     }
 
     @Override
@@ -57,7 +56,7 @@ public class Day13 extends Day {
     @Override
     public String part2() {
         boolean[][] grid = calculateResult(false);
-        System.out.println(Util.gridToString(grid, "#", " "));
+        System.out.println(Util.gridToString(grid, "\u001B[43m  \u001B[0m", "  "));
 
         return null;
     }

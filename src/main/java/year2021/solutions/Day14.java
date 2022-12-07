@@ -6,12 +6,11 @@ import java.io.IOException;
 import java.util.*;
 
 public class Day14 extends Day {
-    private static final boolean isTest = false;
     private String template;
     private Map<String, String> rules;
 
     public Day14() throws IOException {
-        super(isTest);
+        super();
     }
 
     public static void main(String[] args) throws IOException {

@@ -6,10 +6,8 @@ import common.Util;
 import java.io.IOException;
 
 public class Day6 extends Day {
-    private static final boolean isTest = false;
-
     public Day6() throws IOException {
-        super(isTest);
+        super();
     }
 
     private int findStartOfMessage(String line, int amount) {

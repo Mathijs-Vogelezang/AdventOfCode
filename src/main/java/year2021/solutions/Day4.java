@@ -8,10 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Day4 extends Day {
-    private static final boolean isTest = false;
-
     public Day4() throws IOException {
-        super(isTest);
+        super();
     }
 
     public static int[] getNumbers(String numbers, String splitter) {

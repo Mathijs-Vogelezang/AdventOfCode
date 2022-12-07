@@ -5,10 +5,8 @@ import common.Day;
 import java.io.IOException;
 
 public class Day3 extends Day {
-    private static final boolean isTest = false;
-
     public Day3() throws IOException {
-        super(isTest);
+        super();
     }
 
     @Override

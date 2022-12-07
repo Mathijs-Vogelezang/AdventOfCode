@@ -9,8 +9,9 @@ import java.util.Scanner;
 
 public abstract class Day {
     protected final List<String> input = new ArrayList<>();
+    protected static boolean isTest = false;
 
-    public Day(boolean isTest) throws IOException {
+    public Day() throws IOException {
         String[] date = getClass().getName().split("[.]");
         String year = date[0].replace("year", "");
         String day = date[2].replace("Day", "");

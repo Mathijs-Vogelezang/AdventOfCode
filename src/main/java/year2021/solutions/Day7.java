@@ -7,14 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Day7 extends Day {
-    private static final boolean isTest = false;
     private int[] positions;
     int min;
     int max;
     int[] fuels;
 
     public Day7() throws IOException {
-        super(isTest);
+        super();
     }
 
     @Override

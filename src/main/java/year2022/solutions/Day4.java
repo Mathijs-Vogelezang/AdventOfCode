@@ -5,10 +5,8 @@ import common.Day;
 import java.io.IOException;
 
 public class Day4 extends Day {
-    private static final boolean isTest = false;
-
     public Day4() throws IOException {
-        super(isTest);
+        super();
     }
 
     private int[][] getPairs(String line) {

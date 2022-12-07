@@ -6,11 +6,10 @@ import java.io.IOException;
 import java.util.*;
 
 public class Day12 extends Day {
-    private static final boolean isTest = false;
     private Map<String, List<String>> paths;
 
     public Day12() throws IOException {
-        super(isTest);
+        super();
     }
 
     public static void main(String[] args) throws IOException {
@@ -28,6 +27,8 @@ public class Day12 extends Day {
             paths.putIfAbsent(caves[1], new ArrayList<>());
             paths.get(caves[1]).add(caves[0]);
         }
+
+        System.out.println(paths);
     }
 
     @Override

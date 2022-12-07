@@ -6,10 +6,8 @@ import common.Util;
 import java.io.IOException;
 
 public class Day11 extends Day {
-    private static final boolean isTest = false;
-
     public Day11() throws IOException {
-        super(isTest);
+        super();
     }
 
     public static void main(String[] args) throws IOException {

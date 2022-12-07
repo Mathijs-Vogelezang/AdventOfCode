@@ -9,10 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Day8 extends Day {
-    private static final boolean isTest = false;
-
     public Day8() throws IOException {
-        super(isTest);
+        super();
     }
 
     public static void main(String[] args) throws IOException {

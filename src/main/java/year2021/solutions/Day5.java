@@ -7,12 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Day5 extends Day {
-    private static final boolean isTest = false;
     private int maxX = 0;
     private int maxY = 0;
 
     public Day5() throws IOException {
-        super(isTest);
+        super();
     }
 
     @Override

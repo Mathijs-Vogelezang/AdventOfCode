@@ -6,12 +6,11 @@ import java.io.IOException;
 import java.util.*;
 
 public class Day10 extends Day {
-    private static final boolean isTest = true;
     private List<Character> openCharacters;
     private List<Character> closingCharacters;
 
     public Day10() throws IOException {
-        super(isTest);
+        super();
     }
 
     @Override

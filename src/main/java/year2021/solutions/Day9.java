@@ -8,12 +8,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Day9 extends Day {
-    private static final boolean isTest = false;
     private int[][] heightmap;
     private boolean[][] isBasin;
 
     public Day9() throws IOException {
-        super(isTest);
+        super();
     }
 
     @Override

@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.util.*;
 
 public class Day5 extends Day {
-    private static final boolean isTest = false;
-
     public Day5() throws IOException {
-        super(isTest);
+        super();
     }
 
     private Stack<Character>[] getStacks() {

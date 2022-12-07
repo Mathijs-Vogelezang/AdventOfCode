@@ -8,10 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Day1 extends Day {
-    private static final boolean isTest = false;
-
     public Day1() throws IOException {
-        super(isTest);
+        super();
     }
 
 
