@@ -1,5 +1,6 @@
 package common;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Util {
@@ -19,6 +20,16 @@ public class Util {
         }
 
         return amount >= minimum;
+    }
+
+    public static int[] createIntArray(List<String> input) {
+        int[] result = new int[input.size()];
+
+        for (int i = 0; i < input.size(); i++) {
+            result[i] = Integer.parseInt(input.get(i));
+        }
+
+        return result;
     }
 
     public static int[][] createIntGrid (List<String> input) {
@@ -88,5 +99,29 @@ public class Util {
             }
         }
         return true;
+    }
+
+    public static int[][] createIntGridFromChars(List<String> input, char offset) {
+        int[][] grid = new int[input.size()][input.get(0).length()];
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                grid[i][j] = input.get(i).charAt(j) - offset;
+            }
+            System.out.println(Arrays.toString(grid[i]));
+        }
+
+        return grid;
+    }
+
+    public static char[][] createCharGrid(List<String> input) {
+        char[][] grid = new char[input.size()][input.get(0).length()];
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                grid[i][j] = input.get(i).charAt(j);
+            }
+        }
+        return grid;
     }
 }
