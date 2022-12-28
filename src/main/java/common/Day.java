@@ -14,12 +14,12 @@ public abstract class Day {
     public Day() throws IOException {
         String[] date = getClass().getName().split("[.]");
         String year = date[0].replace("year", "");
-        String day = date[2].replace("Day", "");
+        String day = date[1].replace("day", "");
 
         System.out.printf("Advent of Code %s day %s\n", year, day);
 
         if (!isTest) {
-            File input = new File(String.format("src/main/java/year%s/inputs/day%s.txt", year, day));
+            File input = new File(String.format("src/main/java/year%s/day%s/input.txt", year, day));
 
             if (!input.exists()) {
                 URL url = new URL(String.format("https://adventofcode.com/%s/day/%s/input", year, day));
@@ -55,7 +55,7 @@ public abstract class Day {
             System.out.println(outputs[1]);
             System.out.printf("\tPart B took %f s to execute%n", (endTimes[1] - startTimes[1])/1000.0);
         } else {
-            File testInput = new File(String.format("src/test/test-inputs/%s/day%s.txt", year, day));
+            File testInput = new File(String.format("src/main/java/year%s/day%s/test_input.txt", year, day));
             Scanner scanner = new Scanner(testInput);
 
             // Format: first two lines are test solutions taken from the website,
@@ -103,7 +103,6 @@ public abstract class Day {
     }
 
     private void getPuzzleInput(URL url, File file, String cookie) throws IOException {
-
         try {
             URLConnection connection = url.openConnection();
             connection.setRequestProperty("Cookie", "session=" + cookie);
@@ -127,15 +126,7 @@ public abstract class Day {
         }
     }
 
-    public static int[] createIntArray(List<String> input) {
-        int[] result = new int[input.size()];
 
-        for (int i = 0; i < input.size(); i++) {
-            result[i] = Integer.parseInt(input.get(i));
-        }
-
-        return result;
-    }
 
     public abstract String part1();
     public abstract String part2();
